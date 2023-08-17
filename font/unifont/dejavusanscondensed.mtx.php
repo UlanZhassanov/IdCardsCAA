@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-$ttffile = $_SERVER['DOCUMENT_ROOT'].'/student/font/unifont/DejaVuSansCondensed.ttf';
+$ttffile = $_SERVER['DOCUMENT_ROOT'].'/IdCardsCAA/font/unifont/DejaVuSansCondensed.ttf';
 $originalsize=680264;
 $fontkey='dejavu';
 ?>

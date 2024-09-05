@@ -34,7 +34,8 @@ if (isset($_POST['createOnePdf']) || isset($_POST['createAllPdf'])) {
 
     if (file_exists($spisok_txt))
         unlink('upload/spisok.txt');
-
+    
+    $pdf = new tFPDF('L', 'mm', array(54, 86));
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         extract($row);
@@ -49,8 +50,8 @@ if (isset($_POST['createOnePdf']) || isset($_POST['createAllPdf'])) {
         }
 
         $barcode = new Barcode($barcodes, 3);
-        $barcode->save();
-        $pdf = new tFPDF('L', 'mm', array(54, 86));
+        $barcode->save($barcodes . ".png");
+        
         $pdf->AddPage();
         $pdf->Image('template.png', -1, -1, 88);
 
@@ -119,10 +120,12 @@ if (isset($_POST['createOnePdf']) || isset($_POST['createAllPdf'])) {
         $pdf->Cell(12);
         $pdf->Cell(12, 1.5, $studyperiod, 0, 1, 'L');
 
-        $pdf->Image('barcode.png', 2, 38, 40);
+        $pdf->Image($barcodes . ".png", 2, 38, 40);
 
         $filename = 'upload/' . $id . " " . $surname . " " . $name . ".pdf";
-        $pdf->Output($filename, 'F');
+        if (isset($_POST['createOnePdf'])) {
+            $pdf->Output($filename, 'D');
+        } 
 
         $spisok = 'upload/spisok.txt';
         $zapis = ($surname . " " . $name . "\n");
@@ -133,7 +136,12 @@ if (isset($_POST['createOnePdf']) || isset($_POST['createAllPdf'])) {
         } elseif (isset($_POST['createAllPdf'])) {
             $pdfCreated =  'Файлы pdf созданы';
         }
+        unlink($barcodes . ".png");
     }
+    if (isset($_POST['createAllPdf'])) {
+        $pdf->Output("upload/allStudents.pdf", 'D');
+    }
+
 }
 /*if (strlen($img)==0 || file_exists($img)==false){
 		$p='naruto.png';

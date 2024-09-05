@@ -247,7 +247,7 @@ class Barcode
      * If it does not exist, the directory creates it with the appropriate permissions:
      *      RW-R--R--
      */
-    public function save($path = 'barcode.png')
+    public function save($path)
     {
         $dir = dirname($path);
         if (!file_exists($dir)) {

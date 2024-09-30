@@ -48,7 +48,7 @@ if (isset($_POST['submit']) ) {
 // Read
 function getPerson()
 {
-	$query = "SELECT * FROM `colege`";
+	$query = "SELECT * FROM `colege` order by temp, departament, last_name;";
 	$stmt = $this->conn->prepare($query);
 	$stmt->execute();
 	return $stmt;

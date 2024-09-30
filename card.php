@@ -40,7 +40,7 @@ class Card
 		WHERE uc.identifier IS NOT NULL;";*/
         $query = 'select img, id AS id, first_name AS name, last_name AS surname, code13 AS barcodes, departament AS groups2,  
 		CONCAT(begin_date,"-",DATE_FORMAT(end_date, "%d.%m.%Y")) AS  studyperiod, status, photo from colege
-		WHERE code13 IS NOT NULL AND temp=1 order by departament, surname;';
+		WHERE code13 IS NOT NULL AND temp=1 AND length(code13)=13 order by departament, surname;';
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

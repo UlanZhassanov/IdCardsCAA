@@ -3,9 +3,9 @@ class Database{
 
     //private $host = "172.20.252.173";
     private $host = "localhost";
-    private $db_name = "perco";
-    private $username = "root";
-    private $password = "root";
+    private $db_name = "p-342402_cardcol";
+    private $username = "p-342402_col";
+    private $password = "Su#4i040j";
 
     public $conn;
     public function getConnectionMysql(){

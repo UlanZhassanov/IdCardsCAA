@@ -8,7 +8,6 @@ class Database{
     private $password = "root";
 
     public $conn;
-
     public function getConnectionMysql(){
         $this->conn = null;
         try{
